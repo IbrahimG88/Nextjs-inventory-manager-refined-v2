@@ -1,6 +1,8 @@
 import "../styles/globals.css";
 import NextNProgress from "nextjs-progressbar";
 import { SessionProvider } from "next-auth/react";
+import { YourContextNameProvider } from "@/components/context-demo";
+import { BranchConsumer } from "@/components/context-demo";
 
 export default function App({
   Component,
@@ -16,7 +18,10 @@ export default function App({
         showOnShallow={true}
         timeout={3000}
       />
-      <Component {...pageProps} />
+      <YourContextNameProvider>
+        <BranchConsumer />
+        <Component {...pageProps} />
+      </YourContextNameProvider>
     </SessionProvider>
   );
 }
